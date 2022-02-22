@@ -1,27 +1,9 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Pizza's</title>
-    <link rel="icon" th:href="@{/images/luigi.ico}" type="image/x-icon">
-    <link rel="stylesheet" th:href="@{/css/luigi.css}">
-</head>
+<head th:replace="fragments::head(title='Pizza\'s')"></head>
 <body>
+<nav th:replace="fragments::menu"></nav>
 <h1>Pizza's</h1>
-<table id="pizzatabel">
-    <thead>
-    <tr>
-        <th>Naam</th>
-        <th>Prijs</th>
-        <th>Pikant</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="pizza: ${allePizzas}" th:object="${pizza}">
-        <td th:text="*{naam}"></td>
-        <td th:text="*{prijs}" class="getal"></td>
-        <td><th:block th:if="*{pikant}">pikant</th:block></td>
-    </tr>
-    </tbody>
-</table>
+<table th:replace="fragments::pizzaTabel(pizzas=${allePizzas})"></table>
 </body>
 </html>
