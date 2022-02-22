@@ -1,17 +1,17 @@
 package be.vdab.luigi.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalTime;
 
-@RestController
+@Controller
 class IndexController {
     @GetMapping("/")
-    public String index() {
+    public ModelAndView index() {
         var morgenOfMiddag = LocalTime.now().getHour() < 12 ? "morgen" : "middag";
-        return "<!doctype html><html><title>Hallo</title><body>Goede "
-                + morgenOfMiddag +
-                "</body></html>";
+        return new ModelAndView("index", "moment", morgenOfMiddag);
     }
 }
