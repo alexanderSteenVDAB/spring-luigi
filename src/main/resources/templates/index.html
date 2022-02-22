@@ -10,5 +10,16 @@
 <h1>Pizza Luigi</h1>
 <img src="images/luigi.jpg" alt="pizza" class="fullwidth">
 <h2>Goede <span th:text="${moment}"></span></h2>
+<h2>De zaakvoerder</h2>
+<dl th:object="${zaakvoerder}">
+    <dt>Naam</dt>
+    <dd th:text="*{naam}"></dd>
+    <dt>Aantal kinderen</dt>
+    <dd th:text="*{aantalKinderen}"></dd>
+    <dt>Gehuwd</dt>
+    <dd th:text="*{gehuwd} ? 'Ja' : 'Naar'"></dd>
+    <dt>Adres</dt>
+    <dd th:object="${zaakvoerder.adres}" th:text="|*{straat} *{huisNr} *{postcode} *{gemeente}|"></dd>
+</dl>
 </body>
 </html>
