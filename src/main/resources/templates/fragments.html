@@ -9,8 +9,8 @@
 
     <head th:fragment="head(title)">
         <title th:text="${title}"></title>
-        <link rel="icon" th:href="@{images/luigi.ico}" type="image/x-icon">
-        <link rel="stylesheet" th:href="@{css/luigi.css}">
+        <link rel="icon" th:href="@{/images/luigi.ico}" type="image/x-icon">
+        <link rel="stylesheet" th:href="@{/css/luigi.css}">
     </head>
 
     <table th:fragment="pizzaTabel(pizzas)" xmlns:th="http://www.thymeleaf.org"  id="pizzatabel">
@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="pizza: ${pizzas}" th:object="${pizza}">
-            <td th:text="*{naam}"></td>
+            <td><a th:text="*{naam}" th:href="@{/pizzas/{id} (id=*{id})}"></a></td>
             <td th:text="*{prijs}" class="getal"></td>
             <td><th:block th:if="*{pikant}">pikant</th:block></td>
         </tr>
