@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "ecbKoersURL",
+      "type": "java.lang.String",
+      "description": "Description for ecbKoersURL."
+  }
+] }

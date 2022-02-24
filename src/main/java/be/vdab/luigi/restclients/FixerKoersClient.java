@@ -2,6 +2,7 @@ package be.vdab.luigi.restclients;
 
 import be.vdab.luigi.exceptions.KoersClientException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,13 +18,8 @@ class FixerKoersClient implements KoersClient {
 
     private final URL url;
 
-    public FixerKoersClient() {
-        try {
-            url = new URL(
-                    "http://data.fixer.io/api/latest?symbols=USD&access_key=40f55e71d000b9892f83835c63303aeb");
-        } catch (MalformedURLException e) {
-            throw new KoersClientException("Fixer URL is verkeerd.");
-        }
+    public FixerKoersClient(@Value("${fixerKoersURL}") URL url) {
+        this.url = url;
     }
 
     @Override
