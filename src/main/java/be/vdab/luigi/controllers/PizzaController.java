@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 
 @Controller
@@ -70,7 +71,7 @@ public class PizzaController {
     }
 
     @GetMapping("vantotprijs")
-    public ModelAndView findByPrijsBetween(VanTotPrijsForm form, Errors errors) {
+    public ModelAndView findByPrijsBetween(@Valid VanTotPrijsForm form, Errors errors) {
         var modelAndView = new ModelAndView("vantotprijs");
         if (errors.hasErrors()) {
             return modelAndView;
