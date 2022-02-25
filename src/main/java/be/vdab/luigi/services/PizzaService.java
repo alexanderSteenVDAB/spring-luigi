@@ -1,8 +1,10 @@
 package be.vdab.luigi.services;
 
 import be.vdab.luigi.domain.Pizza;
+import be.vdab.luigi.dto.AantalPizzasPerPrijs;
 import be.vdab.luigi.repositories.PizzaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -55,6 +57,11 @@ public class PizzaService {
 
     public List<Pizza> findByIds(Set<Long> ids) {
         return pizzaRepository.findByIds(ids);
+    }
+
+    @Transactional(readOnly = true)
+    public List<AantalPizzasPerPrijs> findAantalPizzasPerPrijs() {
+        return pizzaRepository.findAantalPizzasPerPrijs();
     }
 
 }
