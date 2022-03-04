@@ -4,6 +4,11 @@
 <body>
 <nav th:replace="fragments::menu"></nav>
 <h1>Pizza's</h1>
+<div th:if="${param.idNieuwePizza}" class="boodschap">
+    Pizza is toegevoegd.
+    Zijn nummer:
+    <th:block th:text="${param.idNieuwePizza}"></th:block>
+</div>
 <table th:replace="fragments::pizzaTabel(pizzas=${allePizzas})"></table>
 </body>
 </html>

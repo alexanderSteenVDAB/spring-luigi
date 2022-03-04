@@ -10,12 +10,15 @@
             <dt>Nummer</dt>
             <dd th:text="*{id}"></dd>
             <dt>Prijs</dt>
-            <dd th:text="*{prijs}"></dd>
+            <dd th:text="*{{prijs}}"></dd>
             <dt th:if="${inDollar}">In dollar</dt>
-            <dd th:if="${inDollar}" th:text="${inDollar}"></dd>
+            <dd th:if="${inDollar}" th:text="${#numbers.formatDecimal(inDollar,1,2)}"></dd>
             <dt>Pikant</dt>
             <dd th:text="*{pikant} ? 'Ja' : 'Nee'"></dd>
         </dl>
+        <form method="post" th:action="@{/mandje/{id} (id=*{id})}">
+            <button>In mandje</button>
+        </form>
     </th:block>
 </body>
 </html>

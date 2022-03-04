@@ -1,5 +1,6 @@
 package be.vdab.luigi.controllers;
 
+import be.vdab.luigi.domain.Pizza;
 import be.vdab.luigi.exceptions.KoersClientException;
 import be.vdab.luigi.forms.VanTotPrijsForm;
 import be.vdab.luigi.services.EuroService;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -78,5 +81,20 @@ public class PizzaController {
         }
 
         return modelAndView.addObject("pizzas", pizzaService.findByPrijsBetween(form.van(), form.tot()));
+    }
+
+    @GetMapping("toevoegen/form")
+    public ModelAndView toevoegenForm() {
+        return new ModelAndView("toevoegen")
+                .addObject(new Pizza(0, "", null, false));
+    }
+
+    @PostMapping
+    public String toevoegen(@Valid Pizza pizza, Errors errors, RedirectAttributes redirect) {
+        if (errors.hasErrors()) {
+            return "toevoegen";
+        }
+        redirect.addAttribute("idNieuwePizza", pizzaService.create(pizza));
+        return "redirect:/pizzas";
     }
 }

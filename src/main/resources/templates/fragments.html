@@ -6,10 +6,14 @@
             <li><a th:href="@{/}">Welkom</a></li>
             <li><a th:href="@{/pizzas}">Pizza's</a></li>
             <li><a th:href="@{/pizzas/prijzen}">Prijzen</a></li>
-            <li><a th:href="@{/pizzas/aantalpizzasperprijs}">Aantal pizza's per prijs</a></li>
+            <li><a th:href="@{/pizzas/aantalpizzasperprijs}">Aantal per prijs</a></li>
             <li><a th:href="@{/pizzas/vantotprijs/form}">Van tot prijs</a></li>
+            <li><a th:href="@{/pizzas/toevoegen/form}">Toevoegen</a></li>
+            <li><a th:href="@{/mandje}">Mandje</a></li>
             <li><a th:href="@{/os}">OS</a></li>
             <li><a th:href="@{/kleuren}">Kleuren</a></li>
+            <li><a th:href="@{/identificatie}">Identificatie</a></li>
+
         </ul>
     </nav>
 
@@ -30,7 +34,7 @@
         <tbody>
         <tr th:each="pizza: ${pizzas}" th:object="${pizza}">
             <td><a th:text="*{naam}" th:href="@{/pizzas/{id} (id=*{id})}"></a></td>
-            <td th:text="*{prijs}" class="getal"></td>
+            <td th:text="*{{prijs}}" class="getal"></td>
             <td><th:block th:if="*{pikant}">pikant</th:block></td>
         </tr>
         </tbody>
